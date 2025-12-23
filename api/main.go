@@ -46,6 +46,8 @@ func removeAudioHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err := cmd.Run(); err != nil {
 		http.Error(w, "FFmpeg failed", http.StatusInternalServerError)
+		fmt.Println("FFmpeg failed", err)
+
 		return
 	}
 
