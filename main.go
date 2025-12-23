@@ -105,7 +105,14 @@ func removeAudioHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(logPrefix, "Request completed in", time.Since(start))
 }
 
+func home(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/" && r.Method == http.MethodGet {
+		fmt.Fprint(w, "😊")
+	}
+}
+
 func main() {
+	http.HandleFunc("/", home)
 	http.HandleFunc("/remove-audio", removeAudioHandler)
 	fmt.Println("🚀 Go Video API running on :9090")
 	http.ListenAndServe(":9090", nil)
