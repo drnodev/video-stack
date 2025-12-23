@@ -107,6 +107,6 @@ func removeAudioHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/remove-audio", removeAudioHandler)
-	fmt.Println("🚀 Go Video API running on :8080")
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("🚀 Go Video API running on :9090")
+	http.ListenAndServe(":9090", nil)
 }
