@@ -45,7 +45,17 @@ func removeAudioHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpDir := os.TempDir()
 	inputPath := filepath.Join(tmpDir, fmt.Sprintf("%d_%s", time.Now().UnixNano(), header.Filename))
-	outputPath := filepath.Join(tmpDir, "noaudio_"+filepath.Base(inputPath))
+	//outputPath := filepath.Join(tmpDir, "noaudio_"+filepath.Base(inputPath))
+
+	ext := filepath.Ext(header.Filename)
+	if ext == "" {
+		ext = ".mp4"
+	}
+
+	outputPath := filepath.Join(
+		tmpDir,
+		"noaudio_"+filepath.Base(inputPath)+ext,
+	)
 
 	fmt.Println(logPrefix, "Input path:", inputPath)
 	fmt.Println(logPrefix, "Output path:", outputPath)
@@ -73,6 +83,7 @@ func removeAudioHandler(w http.ResponseWriter, r *http.Request) {
 		"-y",
 		"-i", inputPath,
 		"-c:v", "copy",
+		"-f", "mp4",
 		"-an",
 		outputPath,
 	)
