@@ -5,11 +5,15 @@ services:
     build: ./api
     container_name: go-video-api
     ports:
-      - "8890:8080"
+      - "8080:8080"
     restart: unless-stopped
     deploy:
       resources:
         limits:
           memory: 1g
-  networks:
-    - big-bear-n8n_default
+    networks:
+      - big-bear-n8n_default
+
+networks:
+  big-bear-n8n_default:
+    external: true
