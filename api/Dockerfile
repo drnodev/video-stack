@@ -4,17 +4,24 @@ RUN apk add --no-cache git ffmpeg
 
 WORKDIR /app
 
+# Clone the repository
 RUN git clone https://github.com/drnodev/video-stack.git .
 
+# Move into api folder where go.mod exists
 WORKDIR /app/api
 
 RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o server
 
+# Build for the CURRENT architecture (important!)
+RUN go build -o server
+
+# ---------- Runtime image ----------
 FROM alpine:latest
+
 RUN apk add --no-cache ffmpeg ca-certificates
 
-WORKDIR /app/api
+WORKDIR /app
+
 COPY --from=builder /app/api/server .
 
 EXPOSE 8080
