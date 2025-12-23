@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  go-video-api:
+    build: ./api
+    container_name: go-video-api
+    ports:
+      - "108080:8080"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1g
