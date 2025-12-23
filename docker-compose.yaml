@@ -5,7 +5,7 @@ services:
     build: ./api
     container_name: go-video-api
     ports:
-      - "108080:8080"
+      - "8890:8080"
     restart: unless-stopped
     deploy:
       resources:
