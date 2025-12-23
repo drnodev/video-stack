@@ -11,3 +11,5 @@ services:
       resources:
         limits:
           memory: 1g
+  networks:
+    - big-bear-n8n_default
