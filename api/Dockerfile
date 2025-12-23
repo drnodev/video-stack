@@ -4,7 +4,7 @@ RUN apk add --no-cache git ffmpeg
 
 WORKDIR /app
 
-RUN git clone https://github.com/USUARIO/REPO.git .
+RUN git clone https://github.com/drnodev/video-stack.git .
 
 RUN go mod download
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o server
